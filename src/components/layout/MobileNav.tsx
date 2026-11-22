@@ -58,7 +58,7 @@ export function MobileNav({ currentSection = "Selected Work" }: MobileNavProps) 
             type="button"
             onClick={(e) => toggleTheme(e)}
             aria-label="Toggle theme"
-            title="Toggle theme"
+            data-cursor="switch theme"
             className="p-2 text-muted-foreground hover:text-foreground transition-all duration-200 rounded-md cursor-pointer hover:bg-surface-hover active:scale-95"
           >
             <svg

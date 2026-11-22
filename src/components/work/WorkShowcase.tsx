@@ -10,8 +10,6 @@ type CategoryFilter = "all" | "Product" | "Branding";
 export function WorkShowcase() {
   const [filter, setFilter] = useState<CategoryFilter>("all");
   const [activeIndex, setActiveIndex] = useState(0);
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const [isCursorVisible, setIsCursorVisible] = useState(false);
   const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   // Filter projects by category
@@ -44,7 +42,7 @@ export function WorkShowcase() {
         }
 
         // Reading focal band: ~38% down the viewport
-        const triggerY = window.innerHeight * 0.38;
+        const triggerY = window.innerHeight * 0.58;
 
         let bestIndex = 0;
         let minDistance = Infinity;
@@ -76,24 +74,6 @@ export function WorkShowcase() {
     };
   }, [filteredProjects]);
 
-  // Pointer tracking for "View Case Study" floating badge
-  const handlePointerMove = (e: React.PointerEvent) => {
-    if (e.pointerType === "mouse") {
-      setCursorPos({ x: e.clientX, y: e.clientY });
-    }
-  };
-
-  const handlePointerEnter = (e: React.PointerEvent) => {
-    if (e.pointerType === "mouse") {
-      setCursorPos({ x: e.clientX, y: e.clientY });
-      setIsCursorVisible(true);
-    }
-  };
-
-  const handlePointerLeave = () => {
-    setIsCursorVisible(false);
-  };
-
   const safeActiveIndex =
     activeIndex < filteredProjects.length ? activeIndex : 0;
   const currentProject: ProjectItem =
@@ -101,26 +81,10 @@ export function WorkShowcase() {
 
   return (
     <div className="flex flex-col gap-8 md:gap-10 w-full">
-      {/* Floating Custom Cursor Label ("View Case Study") */}
-      <div
-        aria-hidden="true"
-        className={`pointer-events-none fixed z-50 hidden md:block select-none transition-opacity duration-150 ease-out ${isCursorVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
-          }`}
-        style={{
-          left: cursorPos.x,
-          top: cursorPos.y,
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        <span className="inline-block px-3.5 py-1.5 rounded-full bg-foreground/90 text-background font-sans text-xs font-regular tracking-tight shadow-lg border border-border-strong/20 whitespace-nowrap">
-          View Case Study
-        </span>
-      </div>
-
       {/* Top Monospace Section Marker (Direct match to Image 1) */}
       <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-border-subtle pb-4">
         <div className="flex items-center gap-3">
-          <span className="font-mono text-xs text-subtle-foreground">01</span>
+          
           <span className="font-mono text-xs uppercase tracking-widest text-subtle-foreground">
             /
           </span>
@@ -135,9 +99,7 @@ export function WorkShowcase() {
 
       {/* Section Header: Title & Filter Pills (Direct visual match to Image 1) */}
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <h2 className="text-2xl sm:text-3xl font-regular tracking-tight text-foreground font-sans">
-          Selected Work
-        </h2>
+        
 
         {/* Filter Pills */}
         <div className="flex items-center gap-2">
@@ -183,6 +145,7 @@ export function WorkShowcase() {
             {/* Read Time & Outbound Arrow */}
             <Link
               href={`/work/${currentProject.slug}`}
+              data-cursor="view case study"
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-light text-[#e8590c] dark:text-[#f97316] hover:underline transition-colors group/link w-fit"
             >
               <span>{currentProject.readTime}</span>
@@ -190,7 +153,7 @@ export function WorkShowcase() {
               </Link>
 
             {/* Display Title (Clickable) */}
-            <Link href={`/work/${currentProject.slug}`}>
+            <Link href={`/work/${currentProject.slug}`} data-cursor="view case study">
               <h3 className="text-xl md:text-2xl lg:text-[1.85rem] font-medium tracking-tight text-foreground leading-[1.22] font-sans  transition-colors">
                 {currentProject.displayTitle}
               </h3>
@@ -214,7 +177,7 @@ export function WorkShowcase() {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <span className="font-mono text-[9px] text-background">
+                <span className="font-pixel text-[9px] text-background">
                   {currentProject.id}
                 </span>
               )}
@@ -242,9 +205,7 @@ export function WorkShowcase() {
                   itemRefs.current[idx] = el;
                 }}
                 data-index={idx}
-                onPointerMove={handlePointerMove}
-                onPointerEnter={handlePointerEnter}
-                onPointerLeave={handlePointerLeave}
+                data-cursor="view case study"
                 className={`group relative w-full aspect-[16/10] rounded-2xl lg:rounded-3xl overflow-hidden border bg-surface transition-all duration-300 block cursor-pointer ${isCurrentlyActive
                     ? "border-border-strong shadow-lg"
                     : "border-border-subtle shadow-xs hover:border-border-strong/60"
@@ -278,7 +239,7 @@ export function WorkShowcase() {
 
       {/* Mobile Adapted Composition (< 768px) */}
       <div className="flex md:hidden flex-col gap-12 sm:gap-14">
-        {filteredProjects.map((project, idx) => (
+        {filteredProjects.map((project) => (
           <article
             key={project.id}
             className="flex flex-col gap-4 border-b border-border-subtle/60 pb-10 last:border-b-0"
@@ -288,22 +249,11 @@ export function WorkShowcase() {
               <div className="flex items-center justify-between">
                 <Link
                   href={`/work/${project.slug}`}
+                  data-cursor="view case study"
                   className="inline-flex items-center gap-1.5 text-xs font-medium text-[#e8590c] dark:text-[#f97316]"
                 >
                   <span>{project.readTime}</span>
-                  <svg
-                    className="w-3.5 h-3.5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M7 17L17 7M17 7H7M17 7V17"
-                    />
-                  </svg>
+                  
                 </Link>
                 <span className="text-[10px] font-mono uppercase tracking-wider text-subtle-foreground">
                   {project.metricSub}
@@ -311,8 +261,8 @@ export function WorkShowcase() {
               </div>
 
               {/* Title */}
-              <Link href={`/work/${project.slug}`}>
-                <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-foreground font-sans hover:text-muted-foreground transition-colors">
+              <Link href={`/work/${project.slug}`} data-cursor="view case study">
+                <h3 className="text-xl sm:text-2xl font-medium tracking-tight text-foreground font-sans hover:text-muted-foreground transition-colors">
                   {project.displayTitle}
                 </h3>
               </Link>
@@ -323,32 +273,7 @@ export function WorkShowcase() {
               </p>
             </div>
 
-            {/* 16:10 Thumbnail */}
-            <Link
-              href={`/work/${project.slug}`}
-              className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden border border-border-subtle bg-surface shadow-xs block"
-              style={{ aspectRatio: "16 / 10" }}
-            >
-              {project.hasAsset ? (
-                <Image
-                  src={project.image}
-                  alt={project.displayTitle}
-                  fill
-                  sizes="(max-width: 640px) calc(100vw - 2rem), (max-width: 768px) calc(100vw - 3rem), 100vw"
-                  priority={idx === 0}
-                  className="object-cover object-center"
-                />
-              ) : (
-                <div className="w-full h-full flex flex-col items-center justify-center p-6 bg-surface text-center border border-dashed border-border-subtle rounded-2xl">
-                  <span className="font-mono text-xs text-subtle-foreground uppercase tracking-widest">
-                    [{project.id}] {project.title}
-                  </span>
-                  <span className="text-xs text-muted-foreground mt-1 font-sans">
-                    Thumbnail asset to be provided
-                  </span>
-                </div>
-              )}
-            </Link>
+          
 
             {/* Bottom Metric */}
             <div className="flex items-center gap-3 pt-1">

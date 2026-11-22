@@ -165,7 +165,7 @@ export function Footer({
   }, []);
 
   const handleCopyEmail = useCallback(async () => {
-    const email = "digital.shravanisutar@gmail.com";
+    const email = "shravanisutarwork@gmail.com";
     try {
       await navigator.clipboard.writeText(email);
       setCopied(true);
@@ -208,10 +208,10 @@ export function Footer({
           <div className="pt-2">
             <div className="inline-flex items-center gap-2.5 sm:gap-3 px-4 py-2 sm:py-2.5 rounded-full border border-border-subtle bg-surface/90 backdrop-blur-xs hover:border-border-strong/50 transition-all duration-200 shadow-2xs group w-fit">
               <a
-                href="mailto:digital.shravanisutar@gmail.com"
+                href="mailto:shravanisutarwork@gmail.com"
                 className="text-xs sm:text-sm font-sans text-foreground hover:text-muted-foreground transition-colors font-light select-all"
               >
-                digital.shravanisutar@gmail.com
+                shravanisutarwork@gmail.com
               </a>
               <span
                 className="text-border-subtle/80 select-none text-xs"

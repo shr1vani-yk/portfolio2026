@@ -71,7 +71,7 @@ function ImageCell({ images, alt, priority = false, className = "" }: ImageCellP
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
-    }, 5000);
+    }, 2000);
     return () => clearInterval(timer);
   }, [images.length]);
 

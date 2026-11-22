@@ -35,7 +35,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     label: "Email",
-    href: "mailto:digital.shravanisutar@gmail.com",
+    href: "mailto:shravanisutarwork@gmail.com",
     external: true,
     icon: PhosphorIcons.EnvelopeIcon,
   },

@@ -11,7 +11,7 @@ export function CaseStudyThemeToggle() {
         type="button"
         onClick={(e) => toggleTheme(e)}
         aria-label="Toggle theme"
-        title="Toggle theme"
+        data-cursor="switch theme"
         className="p-2 text-muted-foreground hover:text-foreground transition-all duration-200 rounded-lg cursor-pointer hover:bg-surface-hover/80 active:scale-95 border border-border-subtle/50 bg-background/70 backdrop-blur-xs shadow-2xs"
       >
         <svg

@@ -11,18 +11,18 @@ export function Learnings() {
         className="flex flex-col gap-6 pt-10 border-t border-border-subtle/70"
       >
         <div className="flex flex-col gap-1.5">
-          <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground font-medium">
+          <span className="font-pixel text-xs uppercase tracking-wider text-muted-foreground font-medium">
             LEARNINGS
           </span>
           <h2
             id="heading-learnings"
-            className="text-lg sm:text-xl font-semibold text-foreground tracking-tight leading-snug"
+            className="text-lg sm:text-xl font-regular text-foreground leading-snug"
           >
             Pausing to reflect
           </h2>
         </div>
 
-        <div className="flex flex-col gap-4 text-sm sm:text-base text-foreground/85 leading-relaxed font-sans max-w-3xl">
+        <div className="flex flex-col gap-4 text-sm sm:text-base text-foreground/85 leading-relaxed font-light font-sans max-w-3xl">
           <p>
             The biggest challenge was delivering the experience within a tight
             timeline. The one day ahead ordering model required careful planning
@@ -45,19 +45,19 @@ export function Learnings() {
         className="flex flex-col gap-6 pt-10 border-t border-border-subtle/70"
       >
         <div className="flex flex-col gap-1.5">
-          <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground font-medium">
+          <span className="font-pixel text-xs uppercase tracking-wider text-muted-foreground">
             KIND WORDS FROM CLIENT
           </span>
           <h2
             id="heading-client-words"
-            className="text-lg sm:text-xl font-semibold text-foreground tracking-tight leading-snug"
+            className="text-lg sm:text-xl font-regular text-foreground leading-snug"
           >
             What They Said
           </h2>
         </div>
 
         {/* Testimonial Card Container */}
-        <div className="rounded-2xl bg-surface border border-border-subtle p-6 sm:p-8 grid grid-cols-1 md:grid-cols-[1.1fr_1.3fr] gap-6 sm:gap-8 items-center shadow-xs">
+        <div className="rounded-xl bg-surface border border-border-subtle p-6 sm:p-8 grid grid-cols-1 md:grid-cols-[1.1fr_1.3fr] gap-6 sm:gap-8 items-center shadow-xs">
           {/* Left: Instagram Post Mockup Card */}
           <div className="rounded-xl bg-background border border-border-subtle overflow-hidden shadow-2xs p-3.5 sm:p-4 flex flex-col gap-3">
             {/* Header */}
@@ -74,7 +74,7 @@ export function Learnings() {
                 </div>
               </div>
               <div className="flex flex-col min-w-0">
-                <span className="font-sans font-semibold text-xs text-foreground truncate">
+                <span className="font-sans font-regular text-xs text-foreground truncate">
                   cook_with_aishi, dipesh and nepali_tales
                 </span>
                 <span className="font-sans text-[11px] text-muted-foreground truncate">

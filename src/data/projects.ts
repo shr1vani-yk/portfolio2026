@@ -126,8 +126,8 @@ export const PROJECTS: ProjectItem[] = [
     year: "2026",
     readTime: "3 min read",
     description:
-      "Nepali Tales is a cloud kitchen serving freshly prepared food through a preorder-based model. As demand grew, the founders needed a better way to manage orders, customizations, etc  while keeping the experience simple for customers.",
-    metric: "5k+ Visitors",
+      "Nepali Tales is a cloud kitchen serving freshly prepared food through a preorder-based model. As demand grew, the founders needed a better way to manage orders",
+    metric: "14k+ Visitors",
     metricSub: "2026, FOODTECH",
     tags: ["Visuals", "NextJS", "Prototyped"],
     image: "/images/projects/thumbnails/nepaliTalesThumbnail.jpg",
@@ -357,7 +357,7 @@ export const PROJECTS: ProjectItem[] = [
     readTime: "4 min read",
     description:
       "A collection of creative work, behind Plix's marketing communication, from campaign assets to day-to-day visual content.",
-    metric: "40% CVR Uplift",
+    metric: "Visual Designer",
     metricSub: "2026, WELLNESS / D2C",
     tags: ["Generative UI", "Spatial Canvas", "TypeScript"],
     image: "/images/projects/thumbnails/plixThumbnail.png",

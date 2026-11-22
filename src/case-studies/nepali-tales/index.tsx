@@ -68,18 +68,18 @@ export function NepaliTalesCaseStudy({
         {/* Colophon Section matching Figma design */}
         <div className="pt-12 border-t border-border-subtle/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 font-mono text-[11px] text-muted-foreground uppercase leading-relaxed">
           <div>
-            <p className="font-semibold text-foreground/90">&copy;SHRAVANI SUTAR</p>
+            <p className="font-sans font-medium text-xs text-foreground/90">&copy;SHRAVANI SUTAR</p>
             <p>MULTIDISCIPLINARY ARTIST</p>
           </div>
-          <div className="max-w-md sm:text-right">
+          <div className="font-sans font-regular max-w-md sm:text-right">
             <p>STILL MAKING THINGS, STILL LOOKING FOR THINGS TO MAKE.</p>
             <p>
               IF SOMETHING HERE CAUGHT YOUR ATTENTION, SAY HELLO. [
               <a
                 href="mailto:shravanisutar.99@gmail.com"
-                className="text-foreground hover:underline ml-1"
+                className="font-sans text-foreground text-xs hover:underline ml-1"
               >
-                SHRAVANISUTAR.99@GMAIL.COM
+                SHRAVANISUTARWORK@GMAIL.COM
               </a>
               ]
             </p>

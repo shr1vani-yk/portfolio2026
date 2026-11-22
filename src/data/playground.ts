@@ -212,7 +212,7 @@ export const PLAYGROUND_ITEMS: PlaygroundItem[] = [
   },
   {
     id: "low-poly-well",
-    title: "Low-Poly Well (game assets)",
+    title: "Low-Poly Sushi (game assets)",
     category: "3d-models",
     categoryLabel: "3D Model",
     image: "/images/playground/3d-models/low-poly-well.webp",

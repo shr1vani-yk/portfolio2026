@@ -143,7 +143,7 @@ export function HeroEnterButton({
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         aria-label="think outside the box — Enter to explore Selected Work"
-        title="Explore Selected Work"
+        data-cursor="click"
         tabIndex={0}
         className="relative group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground rounded-2xl"
         animate={

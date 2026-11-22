@@ -109,7 +109,7 @@ export function Insights() {
               onClick={() => setActiveTab(tab.id)}
               className={`font-sans font-light text-[11px] sm:text-xs px-3 sm:px-4 py-1.5 sm:py-2 rounded-full transition-all duration-150 cursor-pointer ${
                 isActive
-                  ? "bg-surface-elevated text-foreground border border-border-strong font-medium shadow-xs"
+                  ? "bg-foreground text-background border border-border-strong font-medium shadow-xs"
                   : "bg-transparent text-muted-foreground hover:text-foreground border border-border-subtle hover:border-border-strong/40"
               }`}
             >

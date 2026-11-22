@@ -54,6 +54,7 @@ export function NextProjectCard({
     >
       <Link
         href={`/work/${nextProject.slug}`}
+        data-cursor="view case study"
         className="group flex flex-col gap-3 sm:gap-3.5 w-full select-none cursor-pointer"
         aria-label={`Next Project: ${title} : ${role}`}
       >
