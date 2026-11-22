@@ -22,7 +22,7 @@ export const PLIX_CASE_STUDY = {
   overview: {
     brand: "PlixLife",
     discipline: "Brand & Visual Design",
-    readTime: "4 min read",
+    readTime: "3 min read",
     title: "From brief to brand expression.",
     description:
       "A collection of creative work, behind Plix's marketing communication, from campaign assets to day-to-day visual content.",

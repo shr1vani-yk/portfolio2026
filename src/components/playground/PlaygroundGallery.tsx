@@ -88,6 +88,15 @@ function PlaygroundVideoCard({
         aria-label={title}
         className="object-cover w-full h-full transition-transform duration-300 ease-out group-hover:scale-[1.02]"
       />
+      {/* Subtle play indicator badge */}
+      <div
+        className={`absolute top-2.5 right-2.5 z-10 flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-xs text-[10px] font-mono text-white/90 transition-opacity duration-200 pointer-events-none select-none ${
+          isHovered ? "opacity-0" : "opacity-90"
+        }`}
+      >
+        <PhosphorIcons.PlayIcon size={9} weight="fill" />
+        <span>Motion</span>
+      </div>
     </div>
   );
 }
@@ -113,24 +122,29 @@ export function PlaygroundGallery() {
   // column heights, and orientation variation across Desktop (3 cols), Tablet (2 cols), and Mobile (1 col).
   const allMixedItems = useMemo(() => {
     const CURATED_ALL_ORDER = [
-      // Column 1 track (Desktop): Interface -> 3D -> Interface -> Visuals
+      // Column 1 track (Desktop): Interface -> Motion -> 3D -> Interface -> Visuals -> Motion
       "ai-assisted-album",
+      "nature-logo",
       "low-poly-well",
       "story-preview-redesign",
       "portrait-practice",
       "typography-style",
+      "damage-loop",
       "subject-priority-space",
 
-      // Column 2 track (Desktop): Visual -> Interface Video -> Visual -> Interface -> Visual
+      // Column 2 track (Desktop): Visual -> Interface Video -> Motion -> Visual -> Interface -> Visual
       "music-album-exploration",
       "card-prototype",
+      "day-03-study",
       "sketch",
       "search-experience",
       "dithered-effect",
+      "spiderman-ident",
 
-      // Column 3 track (Desktop): 3D -> Interface -> 3D -> Visuals
+      // Column 3 track (Desktop): 3D -> Interface -> Motion -> 3D -> Visuals -> Visual
       "topology-texture",
       "sign-up-card-prototype",
+      "kinetic-typography",
       "low-poly-sushi",
       "typography-hero-image",
       "subject-priority-red",
@@ -261,7 +275,7 @@ export function PlaygroundGallery() {
 
                 {/* Microcopy & Hierarchy */}
                 <div className="flex flex-col gap-0.5 pt-0.5">
-                  <h3 className="font-sans font-regular text-xs sm:text-sm text-foreground tracking-tight transition-colors">
+                  <h3 className="font-sans font-light text-xs sm:text-sm text-foreground transition-colors">
                     {item.title}
                   </h3>
                   <p className="font-sans font-light text-xs sm:text-sm text-subtle-foreground">
@@ -308,7 +322,7 @@ export function PlaygroundGallery() {
 
               {/* Microcopy & Hierarchy */}
               <div className="flex flex-col gap-0.5 pt-0.5">
-                <h3 className="font-sans font-regular text-xs sm:text-sm text-foreground tracking-tight transition-colors">
+                <h3 className="font-sans font-light text-xs sm:text-sm text-foreground transition-colors">
                   {item.title}
                 </h3>
                 <p className="font-sans font-light text-xs sm:text-sm text-subtle-foreground">
@@ -342,7 +356,7 @@ export function PlaygroundGallery() {
 
               {/* Microcopy & Hierarchy */}
               <div className="flex flex-col gap-0.5 pt-0.5">
-                <h3 className="font-sans font-regular text-xs sm:text-sm text-foreground tracking-tight transition-colors">
+                <h3 className="font-sans font-light text-xs sm:text-sm text-foreground  transition-colors">
                   {filteredItems[3].title}
                 </h3>
                 <p className="font-sans font-light text-xs sm:text-sm text-subtle-foreground">
@@ -384,7 +398,7 @@ export function PlaygroundGallery() {
 
               {/* Microcopy & Hierarchy */}
               <div className="flex flex-col gap-0.5 pt-0.5">
-                <h3 className="font-sans font-regular text-xs sm:text-sm text-foreground tracking-tight transition-colors">
+                <h3 className="font-sans font-light text-xs sm:text-sm text-foreground  transition-colors">
                   {filteredItems[4].title}
                 </h3>
                 <p className="font-sans font-light text-xs sm:text-sm text-subtle-foreground">
@@ -395,7 +409,7 @@ export function PlaygroundGallery() {
           )}
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-x-4 gap-y-7 sm:gap-x-5 sm:gap-y-9 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-x-4 gap-y-7 sm:gap-x-5 sm:gap-y-9 w-full items-start">
           {filteredItems.map((item, index) => {
             const isHalf = item.desktopColSpan === "half";
 
@@ -435,7 +449,7 @@ export function PlaygroundGallery() {
 
                 {/* Microcopy & Hierarchy matching screenshots */}
                 <div className="flex flex-col gap-0.5 pt-0.5">
-                  <h3 className="font-sans font-regular text-xs sm:text-sm text-foreground tracking-tight  transition-colors">
+                  <h3 className="font-sans font-light text-xs sm:text-sm text-foreground   transition-colors">
                     {item.title}
                   </h3>
                   <p className="font-sans font-light text-xs sm:text-sm text-subtle-foreground">
@@ -499,7 +513,7 @@ export function PlaygroundGallery() {
                   loop
                   muted
                   playsInline
-                  className="max-h-[75vh] w-auto h-auto object-contain rounded-lg"
+                  className="max-h-[75vh] max-w-full w-auto h-auto object-contain rounded-lg"
                 />
               ) : (
                 <Image

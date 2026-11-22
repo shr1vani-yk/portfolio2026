@@ -23,9 +23,9 @@ export function GridShowcase() {
           </h2>
           <p className="text-sm sm:text-base font-light text-muted-foreground leading-relaxed font-sans">
             Nepali Tales is a cloud kitchen serving freshly prepared food through a
-            preorder based model. As demand grew, the founders needed a better
-            way to manage orders, customizations, etc while keeping the
-            experience simpler for customers.
+            preorder based model. As demand grew, they founders needed a better
+            way to manage orders while keeping the
+            experience simpler.
           </p>
         </div>
       </div>
@@ -70,13 +70,13 @@ export function GridShowcase() {
                   Problem Scenario
                 </span>
                 <h3 className="text-lg sm:text-xl md:text-[1.35rem] font-light text-foreground  leading-snug">
-                  When growth started outpacing operations.
+                  When growth started outpacing.
                 </h3>
               </div>
 
               <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed pt-6 font-light">
                 As orders grew, managing them through WhatsApp became harder to
-                track and confusing time slots made it difficult to co-ordinate
+                track
               </p>
             </div>
 

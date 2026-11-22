@@ -11,9 +11,7 @@ export const NEPALI_TALES_METADATA = {
   platforms: ["Responsive website", "Web admin panel"],
   roles: [
     "Lead Product Design",
-    "Product Strategy",
     "UX/UI Design",
-    "Visual Assets",
   ],
   timeline: "3-4 weeks",
   yearAndTeam: {
