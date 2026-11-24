@@ -17,9 +17,9 @@ const OUTCOME_STATS = [
     description: "Handled Seamlessly",
   },
   {
-    value: "80.2%",
-    label: "Order Accuracy",
-    description: "Up from 74%",
+    value: "6x",
+    label: "Order Value Increased ",
+    description: "Comparison from old method",
   },
   {
     value: "< 1.2s",

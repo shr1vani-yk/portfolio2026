@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { CaseStudyHeader } from "@/components/case-study/CaseStudyHeader";
 import { NextProjectCard } from "@/components/case-study/NextProjectCard";
+import { BackToTopButton } from "@/components/case-study/BackToTopButton";
 import { PROJECTS, ProjectItem } from "@/data/projects";
 
 import { Hero } from "./components/Hero";
@@ -88,7 +90,34 @@ export function NepaliTalesCaseStudy({
 
         {/* Next Project Card (Plix) */}
         {nextProject && <NextProjectCard project={nextProject} />}
+
+        {/* Colophon Footer */}
+        <footer className="pt-8 pb-6 border-t border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-muted-foreground select-none">
+          <div>
+            <span>Shravani Sutar Portfolio &middot; 2026</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/#work"
+              className="hover:text-foreground transition-colors"
+            >
+              &larr; Back to Selected Work
+            </Link>
+            <span>&bull;</span>
+            <button
+              type="button"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="hover:text-foreground transition-colors cursor-pointer inline-flex items-center gap-1"
+            >
+              <span>Back to Top</span>
+              <span aria-hidden="true">&uarr;</span>
+            </button>
+          </div>
+        </footer>
       </main>
+
+      {/* Floating Smooth Back-to-Top Button */}
+      <BackToTopButton />
     </div>
   );
 }

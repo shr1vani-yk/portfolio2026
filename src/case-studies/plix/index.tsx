@@ -11,6 +11,7 @@ import {
 } from "@/components/case-study/CaseStudyTopicNav";
 import { TopNav } from "@/components/layout/TopNav";
 import { NextProjectCard } from "@/components/case-study/NextProjectCard";
+import { BackToTopButton } from "@/components/case-study/BackToTopButton";
 import { ProjectItem } from "@/data/projects";
 
 const PLIX_TOPICS: TopicItem[] = [
@@ -436,13 +437,21 @@ export function PlixCaseStudy({ nextProject }: PlixCaseStudyProps) {
                 &larr; Back to Selected Work
               </Link>
               <span>&bull;</span>
-              <a href="#" className="hover:text-foreground transition-colors">
-                Back to Top &uarr;
-              </a>
+              <button
+                type="button"
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                className="hover:text-foreground transition-colors cursor-pointer inline-flex items-center gap-1"
+              >
+                <span>Back to Top</span>
+                <span aria-hidden="true">&uarr;</span>
+              </button>
             </div>
           </footer>
         </main>
       </div>
+
+      {/* Floating Smooth Back-to-Top Button */}
+      <BackToTopButton />
     </div>
   );
 }
