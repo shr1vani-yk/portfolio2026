@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  images: {
+    maximumResponseBody: 60000000,
+  },
   experimental: {
     agentFeedback: true,
     agentUpgrade: "security",

@@ -103,11 +103,13 @@ export interface ProjectItem {
   year: string;
   readTime: string;
   description: string;
+  shortSummary?: string;
   metric: string;
   metricSub: string;
   tags: string[];
   image: string;
   coverImage?: string;
+  logo?: string;
   roleLabel?: string;
   shortTitle?: string;
   hasAsset: boolean;
@@ -127,11 +129,14 @@ export const PROJECTS: ProjectItem[] = [
     readTime: "4 min read",
     description:
       "Nepali Tales was ready to move beyond manual ordering. As demand grew, managing orders through WhatsApp became  difficult. I designed a digital ordering experience to streamline preorders, simplify operations, and help the brand grow online.",
+    shortSummary:
+      "Digital pre-order system streamlining chaotic WhatsApp orders into an automated ordering engine.",
     metric: "14k+ Visitors",
     metricSub: "2026, FOODTECH",
     tags: ["Visuals", "NextJS", "Prototyped"],
-    image: "/images/projects/thumbnails/nepaliTalesThumbnail.jpg",
-    coverImage: "/images/projects/thumbnails/nepaliTalesCover.png",
+    image: "/images/projects/thumbnails/nepaliTalesThumbnail.png",
+    coverImage: "/images/projects/thumbnails/nepaliTalesThumbnail.png",
+    logo: "/images/projects/logos/nepaliTalesLogo.png",
     roleLabel: "Product Designer",
     shortTitle: "Nepali Tales",
     hasAsset: true,
@@ -357,11 +362,14 @@ export const PROJECTS: ProjectItem[] = [
     readTime: "3 min read",
     description:
       "At Plix, I worked on creating digital creatives and visual assets to support brand communication across platforms.",
+    shortSummary:
+      "Campaign assets and performance creatives supporting brand communication across digital platforms.",
     metric: "Visual Designer",
     metricSub: "2026, WELLNESS / D2C",
     tags: ["Generative UI", "Spatial Canvas", "TypeScript"],
     image: "/images/projects/thumbnails/plixThumbnail.png",
     coverImage: "/images/projects/thumbnails/plixThumbnail.png",
+    logo: "/images/projects/logos/plixLogo.png",
     roleLabel: "Visual Designer",
     shortTitle: "Plix",
     hasAsset: true,

@@ -128,9 +128,9 @@ export function WorkShowcase() {
         </div>
       </div>
 
-      {/* Desktop & Tablet Scroll-Synchronised Showcase (>= 768px) */}
+      {/* Desktop Scroll-Synchronised Showcase (>= 1024px) */}
       <div
-        className="relative w-full hidden md:grid gap-8 lg:gap-12 xl:gap-16 items-start"
+        className="relative w-full hidden lg:grid gap-8 lg:gap-12 xl:gap-16 items-start"
         style={{
           gridTemplateColumns: "minmax(0, 38fr) minmax(0, 62fr)",
         }}
@@ -154,7 +154,7 @@ export function WorkShowcase() {
 
             {/* Display Title (Clickable) */}
             <Link href={`/work/${currentProject.slug}`} data-cursor="view case study">
-              <h3 className="text-xl md:text-2xl lg:text-[1.85rem] font-medium tracking-tight text-foreground leading-[1.22] font-sans  transition-colors">
+              <h3 className="text-xl md:text-2xl lg:text-[1.85rem] font-medium tracking-tight text-foreground leading-[1.22] font-sans transition-colors">
                 {currentProject.displayTitle}
               </h3>
             </Link>
@@ -165,25 +165,33 @@ export function WorkShowcase() {
             </p>
           </div>
 
-          {/* Bottom Metric & Metadata (Direct visual match to Image 1) */}
+          {/* Bottom Metric & Metadata with Project Logo */}
           <div className="flex items-center gap-3 pt-6 border-t border-border-subtle/70 mt-8">
-            <div className="relative w-8 h-8 rounded-sm bg-neutral-300 dark:bg-neutral-600 overflow-hidden flex items-center justify-center shrink-0">
-              {currentProject.hasAsset ? (
+            <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-lg overflow-hidden shrink-0 bg-white border border-border-subtle shadow-2xs flex items-center justify-center">
+              {currentProject.logo ? (
+                <Image
+                  src={currentProject.logo}
+                  alt={`${currentProject.title} logo`}
+                  fill
+                  sizes="(max-width: 640px) 36px, 40px"
+                  className="object-contain"
+                />
+              ) : currentProject.hasAsset ? (
                 <Image
                   src={currentProject.image}
                   alt=""
-                  width={32}
-                  height={32}
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 640px) 36px, 40px"
+                  className="object-cover"
                 />
               ) : (
-                <span className="font-pixel text-[9px] text-background">
+                <span className="font-pixel text-[9px] text-muted-foreground">
                   {currentProject.id}
                 </span>
               )}
             </div>
-            <div className="flex flex-col">
-              <span className="text-xs sm:text-sm font-medium text-foreground font-sans">
+            <div className="flex flex-col justify-center">
+              <span className="text-xs sm:text-sm font-medium text-foreground font-sans leading-snug">
                 {currentProject.metric}
               </span>
               <span className="text-[10px] font-mono uppercase tracking-wider text-subtle-foreground">
@@ -237,65 +245,89 @@ export function WorkShowcase() {
         </div>
       </div>
 
-      {/* Mobile Adapted Composition (< 768px) */}
-      <div className="flex md:hidden flex-col gap-12 sm:gap-14">
-        {filteredProjects.map((project) => (
+      {/* Mobile & Tablet Adapted Showcase (< 1024px) */}
+      <div className="flex lg:hidden flex-col gap-8 sm:gap-10">
+        {filteredProjects.map((project, idx) => (
           <article
             key={project.id}
-            className="flex flex-col gap-4 border-b border-border-subtle/60 pb-10 last:border-b-0"
+            className="flex flex-col gap-3.5 sm:gap-4 border-b border-border-subtle/70 pb-8 sm:pb-10 last:border-b-0"
           >
             {/* Meta Header */}
-            <div className="flex flex-col gap-2">
-              <div className="flex items-center justify-between">
-                <Link
-                  href={`/work/${project.slug}`}
-                  data-cursor="view case study"
-                  className="inline-flex items-center gap-1.5 text-xs font-medium text-[#e8590c] dark:text-[#f97316]"
-                >
-                  <span>{project.readTime}</span>
-
-                </Link>
-                <span className="text-[10px] font-mono uppercase tracking-wider text-subtle-foreground">
-                  {project.metricSub}
-                </span>
-              </div>
-
-              {/* Title */}
-              <Link href={`/work/${project.slug}`} data-cursor="view case study">
-                <h3 className="text-xl sm:text-2xl font-medium tracking-tight text-foreground font-sans hover:text-muted-foreground transition-colors">
-                  {project.displayTitle}
-                </h3>
+            <div className="flex items-center justify-between">
+              <Link
+                href={`/work/${project.slug}`}
+                data-cursor="view case study"
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-[#e8590c] dark:text-[#f97316] hover:underline transition-colors"
+              >
+                <span>{project.readTime}</span>
+                <Phosporous.ArrowUpRightIcon size={14} />
               </Link>
-
-              {/* Description */}
-              <p className="text-xs sm:text-sm text-muted-foreground font-sans leading-relaxed">
-                {project.description}
-              </p>
+              <span className="text-[10px] font-mono uppercase tracking-wider text-subtle-foreground">
+                {project.metricSub}
+              </span>
             </div>
 
-            
+            {/* Title */}
+            <Link href={`/work/${project.slug}`} data-cursor="view case study">
+              <h3 className="text-lg sm:text-2xl font-medium tracking-tight text-foreground font-sans hover:text-muted-foreground transition-colors leading-snug">
+                {project.displayTitle}
+              </h3>
+            </Link>
 
-
-            {/* Bottom Metric */}
-            <div className="flex items-center gap-3 pt-1">
-              <div className="relative w-7 h-7 rounded-sm bg-neutral-300 dark:bg-neutral-600 overflow-hidden flex items-center justify-center shrink-0">
+            {/* Thumbnail Alongside Short Project Summary */}
+            <div className="grid grid-cols-[120px_1fr] xs:grid-cols-[140px_1fr] sm:grid-cols-[200px_1fr] md:grid-cols-[260px_1fr] gap-3.5 sm:gap-5 items-start">
+              {/* Project Thumbnail Link */}
+              <Link
+                href={`/work/${project.slug}`}
+                data-cursor="view case study"
+                className="group relative w-full aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden border border-border-subtle bg-surface shadow-xs hover:border-border-strong/60 transition-all duration-300 block shrink-0"
+              >
                 {project.hasAsset ? (
                   <Image
                     src={project.image}
-                    alt=""
-                    width={28}
-                    height={28}
-                    className="w-full h-full object-cover"
+                    alt={project.displayTitle}
+                    fill
+                    sizes="(max-width: 640px) 140px, (max-width: 768px) 200px, 260px"
+                    priority={idx === 0}
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
                   />
                 ) : (
-                  <span className="font-mono text-[8px] text-background">
-                    {project.id}
-                  </span>
+                  <div className="w-full h-full flex items-center justify-center bg-surface p-2 text-center">
+                    <span className="font-mono text-[9px] text-muted-foreground uppercase">
+                      [{project.id}]
+                    </span>
+                  </div>
                 )}
+              </Link>
+
+              {/* Alongside: Short Summary & Metric with Logo */}
+              <div className="flex flex-col justify-between gap-3 h-full">
+                <p className="text-xs sm:text-sm text-muted-foreground font-sans font-light leading-relaxed line-clamp-3 sm:line-clamp-4">
+                  {project.shortSummary || project.description}
+                </p>
+
+                {/* Bottom Metric with Logo */}
+                <div className="flex items-center gap-2.5 pt-1">
+                  <div className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-md overflow-hidden shrink-0 bg-white border border-border-subtle shadow-2xs flex items-center justify-center">
+                    {project.logo ? (
+                      <Image
+                        src={project.logo}
+                        alt={`${project.title} logo`}
+                        fill
+                        sizes="(max-width: 640px) 28px, 32px"
+                        className="object-contain"
+                      />
+                    ) : (
+                      <span className="font-mono text-[8px] text-muted-foreground">
+                        {project.id}
+                      </span>
+                    )}
+                  </div>
+                  <span className="text-[11px] sm:text-xs font-medium text-foreground font-sans">
+                    {project.metric}
+                  </span>
+                </div>
               </div>
-              <span className="text-xs font-medium text-foreground font-sans">
-                {project.metric}
-              </span>
             </div>
           </article>
         ))}

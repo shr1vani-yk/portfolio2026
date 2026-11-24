@@ -97,7 +97,7 @@ export function GridShowcase() {
               />
 
               <Image
-                src="/images/projects/thumbnails/nepaliTalesThumbnail.jpg"
+                src="/images/projects/thumbnails/nepaliTalesThumbnail.png"
                 alt="Nepali Tales Pre-Order System Mobile Mockup"
                 fill
                 priority
@@ -128,7 +128,7 @@ export function GridShowcase() {
             {/* Image Panel */}
             <div className="relative w-full aspect-[4/3] bg-white overflow-hidden">
               <Image
-                src="/images/projects/thumbnails/nepaliTalesThumbnail.jpg"
+                src="/images/projects/thumbnails/nepaliTalesThumbnail.png"
                 alt="Nepali Tales Pre-Order System Mobile Mockup"
                 fill
                 priority
