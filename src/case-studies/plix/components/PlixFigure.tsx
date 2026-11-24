@@ -25,7 +25,7 @@ export function PlixFigure({
       className={`relative w-full overflow-hidden rounded-2xl  ${className}`}
       style={{ aspectRatio: `${asset.width} / ${asset.height}` }}
     >
-      <Image
+      {/* <Image
         src={asset.src}
         alt={asset.alt}
         width={asset.width}
@@ -38,7 +38,7 @@ export function PlixFigure({
             ? "drop-shadow-[0_1px_4px_rgba(0,0,0,0.08)] dark:drop-shadow-none"
             : ""
         }`}
-      />
+      /> */}
     </div>
   );
 }

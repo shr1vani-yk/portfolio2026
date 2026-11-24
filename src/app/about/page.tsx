@@ -1,18 +1,36 @@
+import type { Metadata } from "next";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { TopNav } from "@/components/layout/TopNav";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { Footer } from "@/components/layout/Footer";
 import { AboutGrid } from "@/components/about/AboutGrid";
+import { siteConfig } from "@/config/site";
+import { AboutPageJsonLd } from "@/components/seo/JsonLd";
 
-export const metadata = {
-  title: "About · Shravani Sutar",
+export const metadata: Metadata = {
+  title: "About",
   description:
-    "Product designer & design engineer — personal editorial grid, music, observations, and values.",
+    "Engineer turned designer, exploring the intersection of design and logic — personal editorial grid, background, and experience timeline.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: `About · ${siteConfig.name}`,
+    description:
+      "Engineer turned designer, exploring the intersection of design and logic — personal editorial grid, background, and experience timeline.",
+    url: "/about",
+  },
 };
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-mono selection:bg-[#e8590c]/15">
+      <AboutPageJsonLd
+        title={`About · ${siteConfig.name}`}
+        description="Engineer turned designer, exploring the intersection of design and logic — personal editorial grid, background, and experience timeline."
+        url="/about"
+      />
+
       {/* Mobile & Tablet Collapsed Navigation (< 1024px) */}
       <MobileNav currentSection="About & Craft" />
 

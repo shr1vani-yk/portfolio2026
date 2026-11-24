@@ -4,6 +4,8 @@ import { ThemeProvider } from "@/context/ThemeContext";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import CursorLoader from "@/components/ui/cursor-loader";
+import { siteConfig } from "@/config/site";
+import { PersonAndWebSiteJsonLd } from "@/components/seo/JsonLd";
 
 const stackSans = localFont({
   src: [
@@ -44,8 +46,51 @@ const geistPixel = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Shravani Sutar — Product Designer",
-  description: "Product | UI/UX | Visual Designer",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: siteConfig.title,
+    template: `%s · ${siteConfig.name}`,
+  },
+  description: siteConfig.bio,
+  keywords: siteConfig.keywords,
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
+  alternates: {
+    canonical: siteConfig.url,
+  },
+  openGraph: {
+    type: "website",
+    locale: siteConfig.locale,
+    url: siteConfig.url,
+    title: siteConfig.title,
+    description: siteConfig.bio,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} — ${siteConfig.role}`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.title,
+    description: siteConfig.bio,
+    images: [siteConfig.ogImage],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -66,6 +111,7 @@ export default function RootLayout({
             __html: `(function(){try{var s=localStorage.getItem('theme');var m=window.matchMedia('(prefers-color-scheme: dark)').matches;var t=(s==='dark'||s==='light')?s:(m?'dark':'light');document.documentElement.classList.remove('light','dark');document.documentElement.classList.add(t);document.documentElement.setAttribute('data-theme',t);document.documentElement.style.colorScheme=t;}catch(e){}})();`,
           }}
         />
+        <PersonAndWebSiteJsonLd />
       </head>
       <body className="min-h-full flex flex-col font-sans">
         <CursorLoader />

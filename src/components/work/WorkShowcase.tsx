@@ -84,7 +84,7 @@ export function WorkShowcase() {
       {/* Top Monospace Section Marker (Direct match to Image 1) */}
       <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-border-subtle pb-4">
         <div className="flex items-center gap-3">
-          
+
           <span className="font-mono text-xs uppercase tracking-widest text-subtle-foreground">
             /
           </span>
@@ -99,7 +99,7 @@ export function WorkShowcase() {
 
       {/* Section Header: Title & Filter Pills (Direct visual match to Image 1) */}
       <div className="flex flex-wrap items-center justify-between gap-4">
-        
+
 
         {/* Filter Pills */}
         <div className="flex items-center gap-2">
@@ -117,8 +117,8 @@ export function WorkShowcase() {
                 type="button"
                 onClick={() => handleFilterChange(item.value)}
                 className={`px-4 py-1.5 rounded-full text-xs font-sans transition-all duration-200 cursor-pointer ${isActive
-                    ? "bg-foreground text-background font-medium border border-border-strong shadow-xs"
-                    : "bg-transparent text-muted-foreground border border-border-subtle hover:text-foreground hover:border-border-strong"
+                  ? "bg-foreground text-background font-medium border border-border-strong shadow-xs"
+                  : "bg-transparent text-muted-foreground border border-border-subtle hover:text-foreground hover:border-border-strong"
                   }`}
               >
                 {item.label}
@@ -149,8 +149,8 @@ export function WorkShowcase() {
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-light text-[#e8590c] dark:text-[#f97316] hover:underline transition-colors group/link w-fit"
             >
               <span>{currentProject.readTime}</span>
-              <Phosporous.ArrowUpRightIcon size={16}  />            
-              </Link>
+              <Phosporous.ArrowUpRightIcon size={16} />
+            </Link>
 
             {/* Display Title (Clickable) */}
             <Link href={`/work/${currentProject.slug}`} data-cursor="view case study">
@@ -207,8 +207,8 @@ export function WorkShowcase() {
                 data-index={idx}
                 data-cursor="view case study"
                 className={`group relative w-full aspect-[16/10] rounded-2xl lg:rounded-3xl overflow-hidden border bg-surface transition-all duration-300 block cursor-pointer ${isCurrentlyActive
-                    ? "border-border-strong shadow-lg"
-                    : "border-border-subtle shadow-xs hover:border-border-strong/60"
+                  ? "border-border-strong shadow-lg"
+                  : "border-border-subtle shadow-xs hover:border-border-strong/60"
                   }`}
                 style={{ aspectRatio: "16 / 10" }}
               >
@@ -253,7 +253,7 @@ export function WorkShowcase() {
                   className="inline-flex items-center gap-1.5 text-xs font-medium text-[#e8590c] dark:text-[#f97316]"
                 >
                   <span>{project.readTime}</span>
-                  
+
                 </Link>
                 <span className="text-[10px] font-mono uppercase tracking-wider text-subtle-foreground">
                   {project.metricSub}
@@ -273,7 +273,8 @@ export function WorkShowcase() {
               </p>
             </div>
 
-          
+            
+
 
             {/* Bottom Metric */}
             <div className="flex items-center gap-3 pt-1">

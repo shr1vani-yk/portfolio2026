@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { PROJECTS } from "@/data/projects";
 import { getCaseStudy, renderCaseStudy } from "@/case-studies";
+import { CreativeWorkJsonLd } from "@/components/seo/JsonLd";
+import { siteConfig } from "@/config/site";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -20,13 +22,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!project) {
     return {
-      title: "Case Study · Shravani Sutar",
+      title: "Case Study",
     };
   }
 
+  const title = project.displayTitle || project.title;
+
   return {
-    title: `${project.displayTitle || project.title} · Shravani Sutar`,
+    title,
     description: project.description,
+    alternates: {
+      canonical: `/work/${project.slug}`,
+    },
+    openGraph: {
+      title: `${title} · ${siteConfig.name}`,
+      description: project.description,
+      url: `/work/${project.slug}`,
+      images: project.image ? [{ url: project.image }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} · ${siteConfig.name}`,
+      description: project.description,
+      images: project.image ? [project.image] : undefined,
+    },
   };
 }
 
@@ -50,12 +69,18 @@ async function CaseStudyContent({ params }: Props) {
   }
 
   const projectIndex = PROJECTS.findIndex((p) => p.slug === slug);
+  const project = projectIndex !== -1 ? PROJECTS[projectIndex] : undefined;
   const nextProject =
     projectIndex !== -1
       ? PROJECTS[(projectIndex + 1) % PROJECTS.length]
       : undefined;
 
-  return <>{renderCaseStudy(slug, nextProject)}</>;
+  return (
+    <>
+      {project && <CreativeWorkJsonLd project={project} />}
+      {renderCaseStudy(slug, nextProject)}
+    </>
+  );
 }
 
 export default function CaseStudyPage({ params }: Props) {

@@ -43,7 +43,7 @@ export function MyRole() {
           </span>
           <div className="flex flex-col gap-3 text-sm text-foreground/85 leading-relaxed font-sans font-light">
             <p>
-              Supported a platform handling 450+ orders and 12K+ visitors.
+              Supported a platform handling 450+ orders and 14K+ visitors.
             </p>
             <p>
               Streamlined the ordering process, reducing manual coordination for

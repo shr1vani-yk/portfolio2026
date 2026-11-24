@@ -1,18 +1,36 @@
+import type { Metadata } from "next";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { TopNav } from "@/components/layout/TopNav";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { Footer } from "@/components/layout/Footer";
 import { PlaygroundGallery } from "@/components/playground/PlaygroundGallery";
+import { siteConfig } from "@/config/site";
+import { CollectionPageJsonLd } from "@/components/seo/JsonLd";
 
-export const metadata = {
-  title: "Playground · Shravani Sutar",
+export const metadata: Metadata = {
+  title: "Playground",
   description:
-    "Experiments, 3D models, visual explorations, happy accidents, and creative corners.",
+    "Experiments, 3D models, visual explorations, interactive interfaces, and motion design studies.",
+  alternates: {
+    canonical: "/playground",
+  },
+  openGraph: {
+    title: `Playground · ${siteConfig.name}`,
+    description:
+      "Experiments, 3D models, visual explorations, interactive interfaces, and motion design studies.",
+    url: "/playground",
+  },
 };
 
 export default function PlaygroundPage() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-[#e8590c]/15">
+      <CollectionPageJsonLd
+        title={`Playground · ${siteConfig.name}`}
+        description="Experiments, 3D models, visual explorations, interactive interfaces, and motion design studies."
+        url="/playground"
+      />
+
       {/* Mobile & Tablet Collapsed Navigation (< 1024px) */}
       <MobileNav currentSection="Playground" />
 

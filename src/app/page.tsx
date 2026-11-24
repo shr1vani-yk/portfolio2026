@@ -1,13 +1,35 @@
+import type { Metadata } from "next";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { TopNav } from "@/components/layout/TopNav";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { Footer } from "@/components/layout/Footer";
 import { WorkShowcase } from "@/components/work/WorkShowcase";
 import { Hero } from "@/components/hero/Hero";
+import { siteConfig } from "@/config/site";
+import { ProfilePageJsonLd } from "@/components/seo/JsonLd";
+
+export const metadata: Metadata = {
+  title: siteConfig.title,
+  description: siteConfig.bio,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: siteConfig.title,
+    description: siteConfig.bio,
+    url: "/",
+  },
+};
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans">
+      <ProfilePageJsonLd
+        title={siteConfig.title}
+        description={siteConfig.bio}
+        url="/"
+      />
+
       {/* Mobile & Tablet Collapsed Navigation (< 1024px) */}
       <MobileNav />
 

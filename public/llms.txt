@@ -1,0 +1,50 @@
+# Shravani Sutar
+
+> Product Designer based in Mumbai, India. Engineer turned designer, exploring the intersection of design and logic.
+
+## Identity & Professional Overview
+- Primary Title: Product Designer
+- Supporting Specialisations: Visual Designer, Interaction Designer, UI/UX Designer
+- Location: Mumbai, India
+- Website: Configured via environment variable (canonical base URL)
+- Contact: shravanisutarwork@gmail.com
+- LinkedIn: https://www.linkedin.com/in/shravanisutar/
+- Instagram: https://www.instagram.com/designft.shrav
+- Substack: https://substack.com/@shr1vani
+- GitHub: https://github.com/shr1vani-yk
+
+## Background & Philosophy
+Engineer turned designer, exploring the intersection of design and logic. Focuses on 0–1 product design, design systems, tactile interface craft, and visual design for startups.
+
+## Experience
+- Kairos.artifex (2026): Product & Visual Designer (Freelance)
+- Plixlife (2026): Visual Designer Intern
+- I2IT, PCRC (2024): Design & Engineering Intern
+
+## Selected Projects & Design Case Studies
+
+### 1. Nepali Tales: Designing a Pre-Order System
+- Route: /work/nepali-tales
+- Client: Nepali Tales (Cloud kitchen based in Thane, Maharashtra; Founders: Ashika & Dipesh)
+- Role: Lead Product Design, UX/UI Design, Product Strategy
+- Platform: Responsive website, web admin panel
+- Scope: Designed a 0–1 digital pre-order platform transitioning ordering from manual WhatsApp messaging into an automated time-slot ordering system.
+- Confirmed Project Metrics:
+  - 14.3K+ unique visitors
+  - 34.5K+ page views
+  - 770 payment transactions
+- Live Platform: https://www.nepalitales.com/
+
+### 2. Plix: From Brief to Brand Expression
+- Route: /work/plixlife
+- Brand: PlixLife (D2C plant-based wellness and nutrition brand, part of Marico)
+- Role: Visual Design Intern
+- Scope & Deliverables:
+  - Cross-collaborated with Brand Team and Packaging Team
+  - Designed campaign assets and marketing communications across digital channels
+  - Produced visual assets for product categories (nutrition, effervescents, skincare, haircare)
+  - Created packaging collateral and contributed to UI/UX refinements
+
+## Creative Experiments
+- Route: /playground
+- Visual explorations, 3D models, interactive interfaces, and motion design studies.
