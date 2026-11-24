@@ -30,6 +30,7 @@ export const siteConfig = {
   location: "Mumbai, India",
   url: getBaseUrl(),
   ogImage: "/opengraph-image.png",
+  siteName: "Shravani Sutar",
   locale: "en_US",
   links: {
     email: "shravanisutarwork@gmail.com",
