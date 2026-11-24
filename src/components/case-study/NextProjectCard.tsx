@@ -74,7 +74,10 @@ export function NextProjectCard({
         </div>
 
         {/* Primary Visual: Cover Image with subtle rounded corners */}
-        <div className="relative w-full aspect-[3.5/1] rounded-xl overflow-hidden bg-surface border border-border-subtle/40 shadow-xs">
+        <div
+          className="relative w-full aspect-[3.5/1] min-h-[140px] sm:min-h-[180px] md:min-h-[220px] rounded-xl overflow-hidden bg-surface border border-border-subtle/40 shadow-xs"
+          style={{ aspectRatio: "3.5 / 1" }}
+        >
           <Image
             src={coverImage}
             alt={`${title} : ${role}`}

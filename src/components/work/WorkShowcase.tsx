@@ -10,6 +10,7 @@ type CategoryFilter = "all" | "Product" | "Branding";
 export function WorkShowcase() {
   const [filter, setFilter] = useState<CategoryFilter>("all");
   const [activeIndex, setActiveIndex] = useState(0);
+  const [expandedSummaries, setExpandedSummaries] = useState<Record<string, boolean>>({});
   const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   // Filter projects by category
@@ -21,7 +22,15 @@ export function WorkShowcase() {
   const handleFilterChange = (newFilter: CategoryFilter) => {
     setFilter(newFilter);
     setActiveIndex(0);
+    setExpandedSummaries({});
     itemRefs.current = [];
+  };
+
+  const toggleSummary = (id: string) => {
+    setExpandedSummaries((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
   };
 
   // Scroll synchronization for thumbnail trail (Tablet & Desktop >= 768px)
@@ -214,7 +223,7 @@ export function WorkShowcase() {
                 }}
                 data-index={idx}
                 data-cursor="view case study"
-                className={`group relative w-full aspect-[16/10] rounded-2xl lg:rounded-3xl overflow-hidden border bg-surface transition-all duration-300 block cursor-pointer ${isCurrentlyActive
+                className={`group relative w-full aspect-[16/10] min-h-[280px] lg:min-h-[360px] xl:min-h-[420px] rounded-2xl lg:rounded-3xl overflow-hidden border bg-surface transition-all duration-300 block cursor-pointer ${isCurrentlyActive
                   ? "border-border-strong shadow-lg"
                   : "border-border-subtle shadow-xs hover:border-border-strong/60"
                   }`}
@@ -246,88 +255,90 @@ export function WorkShowcase() {
       </div>
 
       {/* Mobile & Tablet Adapted Showcase (< 1024px) */}
-      <div className="flex lg:hidden flex-col gap-8 sm:gap-10">
+      <div className="flex lg:hidden flex-col gap-10 sm:gap-14">
         {filteredProjects.map((project, idx) => (
           <article
             key={project.id}
-            className="flex flex-col gap-3.5 sm:gap-4 border-b border-border-subtle/70 pb-8 sm:pb-10 last:border-b-0"
+            className="flex flex-col gap-3.5 sm:gap-4 border-b border-border-subtle/70 pb-10 sm:pb-12 last:border-b-0"
           >
-            {/* Meta Header */}
+            {/* Read Time / Meta */}
             <div className="flex items-center justify-between">
               <Link
                 href={`/work/${project.slug}`}
                 data-cursor="view case study"
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-[#e8590c] dark:text-[#f97316] hover:underline transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-[#e8590c] dark:text-[#f97316] hover:underline transition-colors w-fit"
               >
                 <span>{project.readTime}</span>
                 <Phosporous.ArrowUpRightIcon size={14} />
               </Link>
-              <span className="text-[10px] font-mono uppercase tracking-wider text-subtle-foreground">
-                {project.metricSub}
-              </span>
             </div>
 
-            {/* Title */}
+            {/* 1. Project Headline */}
             <Link href={`/work/${project.slug}`} data-cursor="view case study">
-              <h3 className="text-lg sm:text-2xl font-medium tracking-tight text-foreground font-sans hover:text-muted-foreground transition-colors leading-snug">
+              <h3 className="text-xl sm:text-2xl font-medium tracking-tight text-foreground font-sans hover:text-muted-foreground transition-colors leading-snug">
                 {project.displayTitle}
               </h3>
             </Link>
 
-            {/* Thumbnail Alongside Short Project Summary */}
-            <div className="grid grid-cols-[120px_1fr] xs:grid-cols-[140px_1fr] sm:grid-cols-[200px_1fr] md:grid-cols-[260px_1fr] gap-3.5 sm:gap-5 items-start">
-              {/* Project Thumbnail Link */}
-              <Link
-                href={`/work/${project.slug}`}
-                data-cursor="view case study"
-                className="group relative w-full aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden border border-border-subtle bg-surface shadow-xs hover:border-border-strong/60 transition-all duration-300 block shrink-0"
+            {/* 2. Short description / subtext with expand toggle */}
+            <div className="flex flex-col gap-1">
+              <p
+                className={`text-xs sm:text-[13px] text-muted-foreground font-sans font-light leading-relaxed ${
+                  project.description.length > 140 && !expandedSummaries[project.id]
+                    ? "line-clamp-2"
+                    : ""
+                }`}
               >
-                {project.hasAsset ? (
-                  <Image
-                    src={project.image}
-                    alt={project.displayTitle}
-                    fill
-                    sizes="(max-width: 640px) 140px, (max-width: 768px) 200px, 260px"
-                    priority={idx === 0}
-                    className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-surface p-2 text-center">
-                    <span className="font-mono text-[9px] text-muted-foreground uppercase">
-                      [{project.id}]
-                    </span>
-                  </div>
-                )}
-              </Link>
+                {project.description}
+              </p>
+              {project.description.length > 140 && (
+                <button
+                  type="button"
+                  onClick={() => toggleSummary(project.id)}
+                  aria-expanded={Boolean(expandedSummaries[project.id])}
+                  className="text-xs font-regular text-[#000000] dark:text-[#b1b1b1] hover:underline transition-colors w-fit cursor-pointer select-none self-start"
+                >
+                  {expandedSummaries[project.id] ? "Read Less" : ".. Read More"}
+                </button>
+              )}
+            </div>
 
-              {/* Alongside: Short Summary & Metric with Logo */}
-              <div className="flex flex-col justify-between gap-3 h-full">
-                <p className="text-xs sm:text-sm text-muted-foreground font-sans font-light leading-relaxed line-clamp-3 sm:line-clamp-4">
-                  {project.shortSummary || project.description}
-                </p>
-
-                {/* Bottom Metric with Logo */}
-                <div className="flex items-center gap-2.5 pt-1">
-                  <div className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-md overflow-hidden shrink-0 bg-white border border-border-subtle shadow-2xs flex items-center justify-center">
-                    {project.logo ? (
-                      <Image
-                        src={project.logo}
-                        alt={`${project.title} logo`}
-                        fill
-                        sizes="(max-width: 640px) 28px, 32px"
-                        className="object-contain"
-                      />
-                    ) : (
-                      <span className="font-mono text-[8px] text-muted-foreground">
-                        {project.id}
-                      </span>
-                    )}
-                  </div>
-                  <span className="text-[11px] sm:text-xs font-medium text-foreground font-sans">
-                    {project.metric}
+            {/* 3. Full-width Project Thumbnail */}
+            <Link
+              href={`/work/${project.slug}`}
+              data-cursor="view case study"
+              className="group relative w-full aspect-[16/10] min-h-[180px] xs:min-h-[220px] sm:min-h-[280px] rounded-xl sm:rounded-2xl overflow-hidden border border-border-subtle bg-surface shadow-xs hover:border-border-strong/60 transition-all duration-300 block cursor-pointer"
+              style={{ aspectRatio: "16 / 10" }}
+            >
+              {project.hasAsset ? (
+                <Image
+                  src={project.image}
+                  alt={project.displayTitle}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 850px"
+                  priority={idx === 0}
+                  className="object-cover object-center group-hover:scale-[1.015] transition-transform duration-500 ease-out motion-reduce:transition-none"
+                />
+              ) : (
+                <div className="w-full h-full flex flex-col items-center justify-center p-8 bg-surface text-center">
+                  <span className="font-mono text-xs text-subtle-foreground uppercase tracking-widest">
+                    [{project.id}] {project.title}
+                  </span>
+                  <span className="text-xs text-muted-foreground mt-2 font-sans">
+                    Thumbnail asset to be provided
                   </span>
                 </div>
-              </div>
+              )}
+            </Link>
+
+            {/* 4. Metrics as Plain Text (no logo or image) */}
+            <div className="flex flex-col pt-0.5">
+              <span className="text-xs sm:text-sm font-medium text-foreground font-sans leading-snug">
+                {project.metric}
+              </span>
+              <span className="text-[10px] font-mono uppercase tracking-wider text-subtle-foreground">
+                {project.metricSub}
+              </span>
             </div>
           </article>
         ))}
