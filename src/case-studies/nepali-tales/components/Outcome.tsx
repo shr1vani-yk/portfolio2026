@@ -12,9 +12,9 @@ const OUTCOME_STATS = [
     description: "Reduced WhatsApp Dropoff",
   },
   {
-    value: "3.4x",
-    label: "Peak Capacity",
-    description: "Handled Seamlessly",
+    value: "14.3K+",
+    label: "Unique Visitors",
+    description: "	30-Day Reach",
   },
   {
     value: "6x",
@@ -22,9 +22,9 @@ const OUTCOME_STATS = [
     description: "Comparison from old method",
   },
   {
-    value: "< 1.2s",
-    label: "Checkout Time",
-    description: "Optimized Mobile UX",
+     value: "8.4%",
+    label: "Order Intent",
+    description: "Reached Ordering Page",
   },
 ];
 
@@ -124,12 +124,12 @@ export function Outcome() {
       </div>
 
       {/* 3. Centred Website Preview Below */}
-      <div className="relative w-full max-w-[800px] mx-auto aspect-[919/512] rounded-xl overflow-hidden bg-surface shadow-xs">
+      <div className="relative w-full max-w-[1000px] mx-auto aspect-[919/900] rounded-xl overflow-hidden bg-surface shadow-xs">
         <Image
           src="/images/case-studies/NepaliTales/Outcome/img3.png"
           alt="Nepali Tales live website experience"
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 800px) 100vw, 800px"
+          sizes="(max-width: 640px) 100vw, (max-width: 1000px) 100vw, 800px"
           className="object-cover object-center"
         />
       </div>

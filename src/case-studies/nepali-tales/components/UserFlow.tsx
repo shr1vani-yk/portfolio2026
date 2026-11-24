@@ -9,11 +9,11 @@ type FlowTab = "architecture" | "sitemap" | "user-flow";
 interface FlowStep {
   id: FlowTab;
   label: string;
-  imageSrc?: string;
+  imageSrc: string;
   alt: string;
   bgColor: string;
-  width?: number;
-  height?: number;
+  width: number;
+  height: number;
 }
 
 const FLOW_STEPS: Record<FlowTab, FlowStep> = {
@@ -38,8 +38,11 @@ const FLOW_STEPS: Record<FlowTab, FlowStep> = {
   "user-flow": {
     id: "user-flow",
     label: "User Flow",
+    imageSrc: "/images/case-studies/NepaliTales/Flowcharts/userflow.png",
     alt: "Nepali Tales User Flow Diagram",
-    bgColor: "bg-surface",
+    bgColor: "bg-white",
+    width: 3676,
+    height: 1796,
   },
 };
 
@@ -114,8 +117,8 @@ export function UserFlow() {
                   type="button"
                   onClick={() => handleTabChange(tab.id)}
                   className={`font-sans text-[11px] sm:text-xs px-2.5 sm:px-3 py-1 rounded transition-colors whitespace-nowrap cursor-pointer ${isActive
-                      ? "bg-foreground text-background font-medium shadow-2xs"
-                      : "text-muted-foreground hover:text-foreground hover:bg-surface-hover/50"
+                    ? "bg-foreground text-background font-medium shadow-2xs"
+                    : "text-muted-foreground hover:text-foreground hover:bg-surface-hover/50"
                     }`}
                 >
                   {tab.label}
@@ -128,7 +131,7 @@ export function UserFlow() {
 
         </div>
 
-        {/* Diagram Image / Placeholder Container (Clickable to Expand) */}
+        {/* Diagram Image Container (Clickable to Expand) */}
         <div
           role="button"
           tabIndex={0}
@@ -140,39 +143,17 @@ export function UserFlow() {
             }
           }}
           aria-label={`Click to expand ${currentStep.label} diagram`}
-          className={`group relative w-full aspect-[919/449] transition-colors duration-200 overflow-hidden cursor-zoom-in ${currentStep.bgColor} ${currentStep.imageSrc ? "p-3 sm:p-5" : "p-4 sm:p-8"
-            }`}
+          className={`group relative w-full aspect-[919/449] transition-colors duration-200 overflow-hidden cursor-zoom-in ${currentStep.bgColor} p-3 sm:p-5`}
         >
-          {currentStep.imageSrc ? (
-            <Image
-              key={currentStep.id}
-              src={currentStep.imageSrc}
-              alt={currentStep.alt}
-              fill
-              sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 768px) calc(100vw - 64px), (max-width: 960px) calc(100vw - 96px), 864px"
-              className="object-contain transition-transform duration-300 ease-out group-hover:scale-[1.01]"
-              priority
-            />
-          ) : (
-            /* Clean, editorial placeholder for missing asset */
-            <div className="w-full h-full rounded border border-dashed border-border-strong/40 bg-surface/60 flex flex-col items-center justify-center text-center p-4 sm:p-8 select-none">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-surface-elevated border border-border-subtle flex items-center justify-center text-muted-foreground shadow-2xs mb-2.5 sm:mb-3">
-                <PhosphorIcons.TreeStructureIcon
-                  size={22}
-                  weight="regular"
-                  className="text-foreground/80"
-                />
-              </div>
-              <div className="flex items-center gap-2 mb-1.5">
-                <span className="font-sans font-medium text-xs sm:text-sm text-foreground">
-                  User Flow Diagram
-                </span>
-                <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-surface-hover text-subtle-foreground border border-border-subtle">
-                  In Progress
-                </span>
-              </div>
-            </div>
-          )}
+          <Image
+            key={currentStep.id}
+            src={currentStep.imageSrc}
+            alt={currentStep.alt}
+            fill
+            sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 768px) calc(100vw - 64px), (max-width: 960px) calc(100vw - 96px), 864px"
+            className="object-contain transition-transform duration-300 ease-out group-hover:scale-[1.01]"
+            priority
+          />
 
           {/* Hover Hint Badge */}
           <div className="absolute bottom-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none select-none">
@@ -209,8 +190,8 @@ export function UserFlow() {
                       type="button"
                       onClick={() => handleTabChange(tab.id)}
                       className={`font-sans text-[11px] sm:text-xs px-2.5 sm:px-3 py-1 rounded transition-colors whitespace-nowrap cursor-pointer ${isActive
-                          ? "bg-foreground text-background font-medium shadow-2xs"
-                          : "text-muted-foreground hover:text-foreground hover:bg-surface-hover/50"
+                        ? "bg-foreground text-background font-medium shadow-2xs"
+                        : "text-muted-foreground hover:text-foreground hover:bg-surface-hover/50"
                         }`}
                     >
                       {tab.label}
@@ -221,26 +202,24 @@ export function UserFlow() {
 
               {/* Action Controls: Zoom Toggle & Obvious Close Button */}
               <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-                {currentStep.imageSrc && (
-                  <button
-                    type="button"
-                    onClick={() => setIsZoomed((prev) => !prev)}
-                    aria-label={isZoomed ? "Fit diagram to window" : "View diagram at 100% scale"}
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-mono text-muted-foreground hover:text-foreground hover:bg-surface-hover transition-colors cursor-pointer border border-border-subtle"
-                  >
-                    {isZoomed ? (
-                      <>
-                        <PhosphorIcons.MagnifyingGlassMinusIcon size={14} />
-                        <span className="hidden sm:inline">Fit view</span>
-                      </>
-                    ) : (
-                      <>
-                        <PhosphorIcons.MagnifyingGlassPlusIcon size={14} />
-                        <span className="hidden sm:inline">100% Size</span>
-                      </>
-                    )}
-                  </button>
-                )}
+                <button
+                  type="button"
+                  onClick={() => setIsZoomed((prev) => !prev)}
+                  aria-label={isZoomed ? "Fit diagram to window" : "View diagram at 100% scale"}
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-mono text-muted-foreground hover:text-foreground hover:bg-surface-hover transition-colors cursor-pointer border border-border-subtle"
+                >
+                  {isZoomed ? (
+                    <>
+                      <PhosphorIcons.MagnifyingGlassMinusIcon size={14} />
+                      <span className="hidden sm:inline">Fit view</span>
+                    </>
+                  ) : (
+                    <>
+                      <PhosphorIcons.MagnifyingGlassPlusIcon size={14} />
+                      <span className="hidden sm:inline">100% Size</span>
+                    </>
+                  )}
+                </button>
 
                 <button
                   type="button"
@@ -257,66 +236,38 @@ export function UserFlow() {
             {/* Modal Canvas: Sharp, Uncompressed Diagram Rendering */}
             <div
               className={`relative flex-1 w-full overflow-auto transition-colors duration-200 ${currentStep.bgColor} ${isZoomed
-                  ? "p-4 sm:p-8 cursor-zoom-out block"
-                  : "p-3 sm:p-6 md:p-8 flex items-center justify-center cursor-zoom-in"
+                ? "p-4 sm:p-8 cursor-zoom-out block"
+                : "p-3 sm:p-6 md:p-8 flex items-center justify-center cursor-zoom-in"
                 }`}
-              onClick={() => {
-                if (currentStep.imageSrc) {
-                  setIsZoomed((prev) => !prev);
-                }
-              }}
+              onClick={() => setIsZoomed((prev) => !prev)}
             >
-              {currentStep.imageSrc ? (
-                isZoomed ? (
-                  /* 100% Native High-Res Scale with natural panning for detailed reading */
-                  <div className="min-w-[1200px] sm:min-w-[1800px] max-w-none flex justify-center py-4">
-                    <Image
-                      key={`zoomed-${currentStep.id}`}
-                      src={currentStep.imageSrc}
-                      alt={currentStep.alt}
-                      width={currentStep.width || 3676}
-                      height={currentStep.height || 1796}
-                      unoptimized
-                      className="w-full max-w-[2800px] h-auto object-contain select-none shadow-md rounded"
-                      priority
-                    />
-                  </div>
-                ) : (
-                  /* Fit to Window with strict aspect-ratio containment (no cropping, stretching, or pixelation) */
-                  <div className="relative w-full h-full min-h-[300px] flex items-center justify-center">
-                    <Image
-                      key={`fit-${currentStep.id}`}
-                      src={currentStep.imageSrc}
-                      alt={currentStep.alt}
-                      fill
-                      unoptimized
-                      sizes="100vw"
-                      className="object-contain w-full h-full select-none"
-                      priority
-                    />
-                  </div>
-                )
+              {isZoomed ? (
+                /* 100% Native High-Res Scale with natural panning for detailed reading */
+                <div className="min-w-[1200px] sm:min-w-[1800px] max-w-none flex justify-center py-4">
+                  <Image
+                    key={`zoomed-${currentStep.id}`}
+                    src={currentStep.imageSrc}
+                    alt={currentStep.alt}
+                    width={currentStep.width}
+                    height={currentStep.height}
+                    unoptimized
+                    className="w-full max-w-[2800px] h-auto object-contain select-none shadow-md rounded"
+                    priority
+                  />
+                </div>
               ) : (
-                /* Editorial placeholder when on User Flow tab */
-                <div className="w-full max-w-md mx-auto aspect-video rounded-xl border border-dashed border-border-strong/40 bg-surface/60 flex flex-col items-center justify-center text-center p-6 sm:p-10 select-none">
-                  <div className="w-12 h-12 rounded-xl bg-surface-elevated border border-border-subtle flex items-center justify-center text-muted-foreground shadow-2xs mb-3">
-                    <PhosphorIcons.TreeStructureIcon
-                      size={26}
-                      weight="regular"
-                      className="text-foreground/80"
-                    />
-                  </div>
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <span className="font-sans font-medium text-sm text-foreground">
-                      User Flow Diagram
-                    </span>
-                    <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-surface-hover text-subtle-foreground border border-border-subtle">
-                      In Progress
-                    </span>
-                  </div>
-                  <p className="text-xs text-muted-foreground font-sans max-w-xs mt-1">
-                    Currently compiling final production user journeys and branch logic.
-                  </p>
+                /* Fit to Window with strict aspect-ratio containment (no cropping, stretching, or pixelation) */
+                <div className="relative w-full h-full min-h-[300px] flex items-center justify-center">
+                  <Image
+                    key={`fit-${currentStep.id}`}
+                    src={currentStep.imageSrc}
+                    alt={currentStep.alt}
+                    fill
+                    unoptimized
+                    sizes="100vw"
+                    className="object-contain w-full h-full select-none"
+                    priority
+                  />
                 </div>
               )}
             </div>
@@ -325,11 +276,6 @@ export function UserFlow() {
             <div className="px-4 py-2 border-t border-border-subtle bg-surface text-[11px] font-mono text-muted-foreground flex items-center justify-between select-none shrink-0">
               <span className="truncate pr-2">{currentStep.alt}</span>
               <div className="hidden sm:flex items-center gap-3 shrink-0">
-                {currentStep.imageSrc && (
-                  <>
-
-                  </>
-                )}
                 <span>Esc to close</span>
               </div>
             </div>
