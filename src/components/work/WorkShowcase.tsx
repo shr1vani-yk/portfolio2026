@@ -33,6 +33,29 @@ export function WorkShowcase() {
     }));
   };
 
+  // Smooth scroll to #work on cross-page arrival (e.g. from /about or /playground)
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.location.hash === "#work") {
+      const timer = setTimeout(() => {
+        const workEl = document.getElementById("work");
+        if (workEl) {
+          const topbar = document.querySelector("header");
+          const topbarHeight =
+            topbar ? topbar.offsetHeight : window.innerWidth >= 1024 ? 60 : 56;
+          const targetY =
+            window.scrollY + workEl.getBoundingClientRect().top - topbarHeight - 16;
+          const prefersReducedMotion =
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          window.scrollTo({
+            top: Math.max(0, targetY),
+            behavior: prefersReducedMotion ? "auto" : "smooth",
+          });
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   // Scroll synchronization for thumbnail trail (Tablet & Desktop >= 768px)
   useEffect(() => {
     if (typeof window === "undefined") return;

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useTheme } from "@/context/ThemeContext";
 import { Cat } from "./Cat";
@@ -12,6 +13,7 @@ interface MobileNavProps {
 }
 
 export function MobileNav({ currentSection = "Selected Work" }: MobileNavProps) {
+  const pathname = usePathname();
   const { activeSection } = useActiveSection();
   const [isOpen, setIsOpen] = useState(false);
   const { toggleTheme } = useTheme();
@@ -131,8 +133,36 @@ export function MobileNav({ currentSection = "Selected Work" }: MobileNavProps) 
                   <Link
                     key={item.id}
                     href={item.href}
-                    onClick={() => {
+                    onClick={(e) => {
                       setIsOpen(false);
+                      if (item.id === "work" && pathname === "/") {
+                        e.preventDefault();
+                        const workEl = document.getElementById("work");
+                        if (workEl) {
+                          const topbar =
+                            document.querySelector("header") ||
+                            document.querySelector(".sticky");
+                          const topbarHeight =
+                            topbar instanceof HTMLElement
+                              ? topbar.offsetHeight
+                              : 56;
+                          const targetY =
+                            window.scrollY +
+                            workEl.getBoundingClientRect().top -
+                            topbarHeight -
+                            16;
+                          const prefersReducedMotion =
+                            window.matchMedia("(prefers-reduced-motion: reduce)")
+                              .matches;
+                          window.scrollTo({
+                            top: Math.max(0, targetY),
+                            behavior: prefersReducedMotion ? "auto" : "smooth",
+                          });
+                          if (window.history && window.history.pushState) {
+                            window.history.pushState(null, "", "/#work");
+                          }
+                        }
+                      }
                     }}
                     className={`group flex items-center justify-between px-2.5 py-2.5 rounded-md text-xs sm:text-sm font-sans transition-all duration-150 ${
                       isActive

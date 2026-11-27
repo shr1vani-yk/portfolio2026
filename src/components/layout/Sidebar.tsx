@@ -11,6 +11,30 @@ export function Sidebar() {
   const pathname = usePathname();
   const { activeSection } = useActiveSection();
 
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    item: (typeof NAV_ITEMS)[number]
+  ) => {
+    if (item.id === "work" && pathname === "/") {
+      e.preventDefault();
+      const workEl = document.getElementById("work");
+      if (workEl) {
+        const topbar = document.querySelector("header");
+        const topbarHeight = topbar ? topbar.offsetHeight : 60;
+        const targetY = window.scrollY + workEl.getBoundingClientRect().top - topbarHeight - 16;
+        const prefersReducedMotion =
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        window.scrollTo({
+          top: Math.max(0, targetY),
+          behavior: prefersReducedMotion ? "auto" : "smooth",
+        });
+        if (window.history && window.history.pushState) {
+          window.history.pushState(null, "", "/#work");
+        }
+      }
+    }
+  };
+
   return (
     <aside
       aria-label="Sidebar Navigation"
@@ -59,6 +83,7 @@ export function Sidebar() {
               <Link
                 key={item.id}
                 href={item.href}
+                onClick={(e) => handleNavClick(e, item)}
                 className={`group flex items-center justify-between px-2.5 py-2 rounded-md text-xs font-sans transition-all duration-150 ${
                   isActive
                     ? "bg-surface-hover text-foreground font-medium"

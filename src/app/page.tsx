@@ -47,7 +47,7 @@ export default function Home() {
           <Hero />
 
           {/* Section: Selected Work */}
-          <section id="work" className="w-full">
+          <section id="work" className="w-full scroll-mt-16 sm:scroll-mt-20">
             <WorkShowcase />
           </section>
 

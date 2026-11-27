@@ -99,6 +99,28 @@ export function TopNav({
     }
   };
 
+  const handleWorkClick = (e: React.MouseEvent) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      const workEl = document.getElementById("work");
+      if (workEl) {
+        const topbar = document.querySelector("header");
+        const topbarHeight = topbar ? topbar.offsetHeight : 60;
+        const targetY =
+          window.scrollY + workEl.getBoundingClientRect().top - topbarHeight - 16;
+        const prefersReducedMotion =
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        window.scrollTo({
+          top: Math.max(0, targetY),
+          behavior: prefersReducedMotion ? "auto" : "smooth",
+        });
+        if (window.history && window.history.pushState) {
+          window.history.pushState(null, "", "/#work");
+        }
+      }
+    }
+  };
+
   const displayClass = showOnMobile ? "block" : "hidden lg:block";
 
   return (
@@ -139,6 +161,8 @@ export function TopNav({
                     onClick={
                       crumb.href === "/" || crumb.href === "#hero"
                         ? handleHomeClick
+                        : crumb.href === "/#work"
+                        ? handleWorkClick
                         : undefined
                     }
                     className="hover:text-foreground transition-colors"
