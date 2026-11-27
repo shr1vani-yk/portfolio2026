@@ -38,9 +38,7 @@ export function Sidebar() {
               ’26
             </span>
           </div>
-          <p className="text-xs text-muted-foreground font-sans font-regular tracking-normal">
-            Product Designer &amp; Design Engineer
-          </p>
+         
         </Link>
 
         {/* Animated Cat Mascot from Framer reference */}
@@ -113,11 +111,11 @@ export function Sidebar() {
       </nav>
 
       {/* Footer Colophon */}
-      <div className="p-4 lg:p-6 border-t border-border-subtle flex flex-col gap-1.5 text-[0.6875rem] font-pixel text-subtle-foreground">
+      {/* <div className="p-4 lg:p-6 border-t border-border-subtle flex flex-col gap-1.5 text-[0.6875rem] font-pixel text-subtle-foreground">
         <div className="flex items-center justify-between">
           <span>&copy; 2026 · Made with Caffeine & Antigravity All Rights Reserved</span>
         </div>
-      </div>
+      </div> */}
     </aside>
   );
 }

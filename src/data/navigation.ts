@@ -15,9 +15,9 @@ export interface SocialLink {
 }
 
 export const NAV_ITEMS: NavItem[] = [
-  { id: "work", label: "Selected Work", count: "04", href: "/#work" },
+  { id: "work", label: "Selected Work", count: "", href: "/#work" },
   { id: "about", label: "About Me", count: "", href: "/about" },
-  { id: "playground", label: "Playground", count: "12", href: "/playground" },
+  { id: "playground", label: "Playground", count: "", href: "/playground" },
 ];
 
 export const SOCIAL_LINKS: SocialLink[] = [
