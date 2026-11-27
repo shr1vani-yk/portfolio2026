@@ -41,7 +41,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     label: "Resume",
-    href: "https://drive.google.com/file/d/1gA5pRWKDiUs8rAZqsdrNQwDKzN4wTCsC/view?usp=sharing",
+    href: "https://drive.google.com/file/d/1mq3fXZDiRvRBmmTVDeYnpfaU6atgvqDK/view?usp=drive_link",
     external: true,
     icon: PhosphorIcons.FileCIcon,
   },
