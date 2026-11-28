@@ -17,9 +17,10 @@ export const NEPALI_TALES_METADATA = {
   yearAndTeam: {
     heading: "2026 & 4 Members",
     members: [
-      "2 Co-Ordinator Managers",
+      "2 Co-Ordinator",
       "1 Product Designer",
       "1 Developers",
+      
     ],
   },
   liveUrl: "https://www.nepalitales.com/",
