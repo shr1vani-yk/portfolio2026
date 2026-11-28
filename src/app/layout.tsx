@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import CursorLoader from "@/components/ui/cursor-loader";
 import { siteConfig } from "@/config/site";
 import { PersonAndWebSiteJsonLd } from "@/components/seo/JsonLd";
+import { Analytics } from "@vercel/analytics/next";
 
 const stackSans = localFont({
   src: [
@@ -117,6 +118,7 @@ export default function RootLayout({
         <CursorLoader />
 
         <ThemeProvider>{children}</ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
