@@ -19,7 +19,7 @@ export const NEPALI_TALES_METADATA = {
     members: [
       "2 Co-Ordinator",
       "1 Product Designer",
-      "1 Developers",
+      "1 Developer",
       
     ],
   },
