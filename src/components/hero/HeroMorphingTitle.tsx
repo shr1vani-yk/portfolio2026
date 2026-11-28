@@ -11,7 +11,7 @@ export interface HeroMorphingTitleProps {
   greetingRight?: string;
 }
 
-const DEFAULT_WORDS = ["ORDINARY", "VISUAL", "PRODUCT"];
+const DEFAULT_WORDS = ["ORDINARY", "UI/UX", "PRODUCT"];
 
 export function HeroMorphingTitle({
   className = "",
@@ -62,9 +62,8 @@ export function HeroMorphingTitle({
     <div className={`w-full flex flex-col gap-3 sm:gap-4 ${className}`}>
       {/* Top Labels: Positioned at opposite ends (left and right) */}
       <div
-        className={`items-center justify-between w-full select-none ${
-          isStackedOrWrapped ? "hidden" : "hidden md:flex"
-        }`}
+        className={`items-center justify-between w-full select-none ${isStackedOrWrapped ? "hidden" : "hidden md:flex"
+          }`}
       >
         <span className="font-sans font-medium text-base sm:text-lg md:text-xl text-foreground tracking-normal">
           {greetingLeft}
